@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>felix.bytow@googlemail.com</email>
+		<name>Felix Bytow</name>
+	</maintainer>
+	<longdescription lang="en">
+		This is the Dragon Brainfuck Interpreter.
+		Optionally it can be used to compile brainfuck scripts
+		into binary programs.
+	</longdescription>
+	<use>
+		<flag name='compiler'>
+			Enables the embedded brainfuck compiler.
+			This will pull in <pkg>dev-lang/tcc</pkg> as a dependency.
+		</flag>
+	</use>
+</pkgmetadata>
+
