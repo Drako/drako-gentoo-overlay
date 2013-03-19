@@ -24,7 +24,7 @@ RDEPEND=""
 RESTRICT="test mirror"
 
 src_configure() {
-	CMAKE_OPTIONS="$(cmake-utils_use_with compiler COMPILER)"
-	cmake-utils_src_configure ${CMAKE_OPTIONS}
+	local mycmakeargs="$(cmake-utils_use_with compiler COMPILER)"
+	cmake-utils_src_configure
 }
 
