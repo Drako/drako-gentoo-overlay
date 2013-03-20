@@ -46,17 +46,17 @@ Index: libs/network/src/CMakeLists.txt
  add_library(cppnetlib-client-connections ${CPP-NETLIB_HTTP_CLIENT_SRCS})
 +
 +install(
-+    targets
++    TARGETS
 +        cppnetlib-uri
 +        cppnetlib-server-parsers
 +        cppnetlib-client-connections
-+    destination
++    DESTINATION
 +        lib
 +)
 +install(
-+    directory
++    DIRECTORY
 +        "${CMAKE_SOURCE_DIR}/boost"
-+    destination
++    DESTINATION
 +        include
 +)
 +

@@ -14,7 +14,7 @@ SRC_URI="https://github.com/downloads/cpp-netlib/cpp-netlib/${P}.tar.gz"
 LICENSE="Boost-1.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="ssl examples"
+IUSE="ssl"
 
 DEPEND=">=dev-libs/boost-1.45.0
 	ssl? ( dev-libs/openssl )"
@@ -28,7 +28,7 @@ src_prepare() {
 }
 
 src_configure() {
-	local mycmakeargs="$(cmake-utils_use_with ssl SSL) $(cmake-utils_use_with examples EXAMPLES)"
+	local mycmakeargs="$(cmake-utils_use_with ssl SSL)"
 	cmake-utils_src_configure
 }
 
