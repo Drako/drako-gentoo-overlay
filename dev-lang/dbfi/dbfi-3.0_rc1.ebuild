@@ -3,6 +3,8 @@
 # $Header: $
 
 EAPI=5
+
+CMAKE_MIN_VERSION="2.6"
 inherit cmake-utils eutils versionator
 
 DESCRIPTION="A brainfuck interpreter"
@@ -16,7 +18,7 @@ SRC_URI="https://github.com/Drako/dbfi/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.g
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="-compiler"
+IUSE="compiler"
 
 DEPEND="compiler? ( >=dev-lang/tcc-0.9.26 )"
 RDEPEND=""

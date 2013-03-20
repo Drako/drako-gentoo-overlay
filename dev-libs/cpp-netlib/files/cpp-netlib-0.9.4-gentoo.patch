@@ -1,0 +1,14 @@
+--- CMakeLists.txt.old	2013-03-20 20:31:13.464811226 +0100
++++ CMakeLists.txt	2013-03-20 20:32:42.201809286 +0100
+@@ -8,7 +8,10 @@
+ set(Boost_USE_STATIC_LIBS ON)
+ set(Boost_USE_MULTI_THREADED ON)
+ find_package( Boost 1.45.0 REQUIRED unit_test_framework system regex date_time thread filesystem program_options )
+-find_package( OpenSSL )
++option( WITH_SSL "enables HTTPS. requires OpenSSL" OFF )
++if (WITH_COMPILER)
++    find_package( OpenSSL )
++endif()
+ find_package( Threads )
+ set(CMAKE_VERBOSE_MAKEFILE true)
+ 
