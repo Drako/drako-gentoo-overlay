@@ -1,14 +1,39 @@
 --- CMakeLists.txt.old	2013-03-20 20:31:13.464811226 +0100
-+++ CMakeLists.txt	2013-03-20 20:32:42.201809286 +0100
-@@ -8,7 +8,10 @@
++++ CMakeLists.txt	2013-03-20 21:03:52.085768415 +0100
+@@ -8,13 +8,14 @@
  set(Boost_USE_STATIC_LIBS ON)
  set(Boost_USE_MULTI_THREADED ON)
  find_package( Boost 1.45.0 REQUIRED unit_test_framework system regex date_time thread filesystem program_options )
 -find_package( OpenSSL )
+-find_package( Threads )
+-set(CMAKE_VERBOSE_MAKEFILE true)
+ 
+-if (CMAKE_BUILD_TYPE MATCHES Debug)
+-    add_definitions(-DBOOST_NETWORK_DEBUG)
 +option( WITH_SSL "enables HTTPS. requires OpenSSL" OFF )
++option( WITH_EXAMPLES "builds and installs the examples" OFF )
++
 +if (WITH_COMPILER)
 +    find_package( OpenSSL )
-+endif()
- find_package( Threads )
- set(CMAKE_VERBOSE_MAKEFILE true)
+ endif()
++find_package( Threads )
  
+ if (OPENSSL_FOUND)
+     add_definitions(-DBOOST_NETWORK_ENABLE_HTTPS)
+@@ -28,13 +29,9 @@
+       add_definitions(-D_WIN32_WINNT=0x0501)
+     endif(WIN32)
+     include_directories(${Boost_INCLUDE_DIRS})
+-    enable_testing()
+     add_subdirectory(libs/network/src)
+-    add_subdirectory(libs/network/test)
+-    if (NOT MSVC)
+-      add_subdirectory(libs/mime/test)
+-    endif(NOT MSVC)
+-    add_subdirectory(libs/network/example)
++    if (WITH_EXAMPLES)
++        add_subdirectory(libs/network/example)
++    endif()
+ endif(Boost_FOUND)
+ 
+-enable_testing()
