@@ -17,7 +17,7 @@ SRC_URI="https://github.com/Drako/dbfi/archive/v${MY_PV}.tar.gz -> ${MY_P}.tar.g
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="**"
+KEYWORDS="~amd64 ~x86"
 IUSE="compiler"
 
 DEPEND="compiler? ( >=dev-lang/tcc-0.9.26 )"
