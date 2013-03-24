@@ -27,3 +27,8 @@ RESTRICT="test mirror"
 CONFIG_CHECK="PROC_FS"
 MODULE_NAMES="bofh"
 
+src_prepare() {
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-gentoo.patch"
+}
+

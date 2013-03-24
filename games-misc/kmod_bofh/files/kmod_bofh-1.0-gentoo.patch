@@ -1,0 +1,14 @@
+diff --git a/Makefile b/Makefile
+index 0a84100..e152012 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,3 +1,9 @@
+ obj-m := bofh.o
+ bofh-objs := bofh_main.o bofh_excuses.o
+ 
++module:
++	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
++
++clean:
++	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
++
