@@ -25,7 +25,7 @@ RDEPEND=""
 RESTRICT="test mirror"
 
 CONFIG_CHECK="PROC_FS"
-MODULE_NAMES="bofh"
+MODULE_NAMES="bofh(misc:${S}:${S})"
 
 src_prepare() {
 	cd "${S}"
