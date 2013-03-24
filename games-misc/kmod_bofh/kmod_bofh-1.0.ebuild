@@ -10,7 +10,7 @@ inherit linux-mod
 DESCRIPTION="Read BOFH excuses from /proc/excuse"
 HOMEPAGE="https://github.com/Drako/bofh"
 
-MY_P="bofh-${MY_PV}"
+MY_P="bofh-${PV}"
 S="${WORKDIR}/${MY_P}"
 SRC_URI="https://github.com/Drako/bofh/archive/v${PV}.tar.gz -> ${MY_P}.tar.gz"
 
