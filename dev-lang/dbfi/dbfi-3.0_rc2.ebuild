@@ -26,7 +26,7 @@ RDEPEND=""
 RESTRICT="test mirror"
 
 src_prepare() {
-	cd "${S}"
+	cd "${S}/src"
 	sed "s/@GIT_HASH@/v${MY_PV}/" <config.h.in >config.h.in
 	sed 's/Hash:/Tag: /' <main.c >main.c
 }
