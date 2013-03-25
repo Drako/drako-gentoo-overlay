@@ -25,6 +25,12 @@ RDEPEND=""
 
 RESTRICT="test mirror"
 
+src_prepare() {
+	cd "${S}"
+	sed "s/@GIT_HASH@/v${MY_PV}/" <config.h.in >config.h.in
+	sed 's/Hash:/Tag: /' <main.c >main.c
+}
+
 src_configure() {
 	local mycmakeargs="$(cmake-utils_use_with compiler COMPILER)"
 	cmake-utils_src_configure
