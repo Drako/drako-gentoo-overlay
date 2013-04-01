@@ -30,5 +30,8 @@ MODULE_NAMES="bofh(misc:${S}:${S})"
 src_prepare() {
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-gentoo.patch"
+	
+	sed "s/\$(shell uname -r)/${KV_FULL}/" <Makefile >Makefile.tmp
+	mv Makefile.tmp Makefile
 }
 
