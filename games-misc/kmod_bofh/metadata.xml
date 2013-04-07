@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+		<email>felix.bytow@googlemail.com</email>
+		<name>Felix Bytow</name>
+	</maintainer>
+	<longdescription lang="en">
+		This kernel module provides the file /proc/excuse.
+		Everytime the file is read it will contain another
+		randomly selected BOFH excuse.
+	</longdescription>
+</pkgmetadata>
+
