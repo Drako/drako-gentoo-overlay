@@ -1,0 +1,122 @@
+diff --git a/gcc/config/alpha/linux.h b/gcc/config/alpha/linux.h
+index 3a2940c..6b0ac9c 100644
+--- a/gcc/config/alpha/linux.h
++++ b/gcc/config/alpha/linux.h
+@@ -88,7 +88,7 @@ Boston, MA 02111-1307, USA.  */
+     else if (pc_[1] == 0x201f015f)	/* lda $0,NR_rt_sigreturn */	\
+       {									\
+ 	struct rt_sigframe {						\
+-	  struct siginfo info;						\
++	  siginfo_t info;						\
+ 	  struct ucontext uc;						\
+ 	} *rt_ = (CONTEXT)->cfa;					\
+ 	sc_ = &rt_->uc.uc_mcontext;					\
+diff --git a/gcc/config/i386/linux.h b/gcc/config/i386/linux.h
+index 48c77d9..644f539 100644
+--- a/gcc/config/i386/linux.h
++++ b/gcc/config/i386/linux.h
+@@ -64,16 +64,16 @@ Boston, MA 02111-1307, USA.  */
+ 
+ #undef SIZE_TYPE
+ #define SIZE_TYPE "unsigned int"
+- 
++
+ #undef PTRDIFF_TYPE
+ #define PTRDIFF_TYPE "int"
+-  
++
+ #undef WCHAR_TYPE
+ #define WCHAR_TYPE "long int"
+-   
++
+ #undef WCHAR_TYPE_SIZE
+ #define WCHAR_TYPE_SIZE BITS_PER_WORD
+-    
++
+ #define TARGET_OS_CPP_BUILTINS()		\
+   do						\
+     {						\
+@@ -172,7 +172,7 @@ Boston, MA 02111-1307, USA.  */
+ #if defined(__PIC__) && defined (USE_GNULIBC_1)
+ /* This is a kludge. The i386 GNU/Linux dynamic linker needs ___brk_addr,
+    __environ and atexit.  We have to make sure they are in the .dynsym
+-   section.  We do this by forcing the assembler to create undefined 
++   section.  We do this by forcing the assembler to create undefined
+    references to these symbols in the object file.  */
+ #undef CRT_CALL_STATIC_FUNCTION
+ #define CRT_CALL_STATIC_FUNCTION(SECTION_OP, FUNC)	\
+@@ -257,9 +257,9 @@ Boston, MA 02111-1307, USA.  */
+       {									\
+ 	struct rt_sigframe {						\
+ 	  int sig;							\
+-	  struct siginfo *pinfo;					\
++	  siginfo_t *pinfo;					\
+ 	  void *puc;							\
+-	  struct siginfo info;						\
++	  siginfo_t info;						\
+ 	  struct ucontext uc;						\
+ 	} *rt_ = (CONTEXT)->cfa;					\
+ 	sc_ = (struct sigcontext *) &rt_->uc.uc_mcontext;		\
+diff --git a/gcc/config/i386/linux64.h b/gcc/config/i386/linux64.h
+index fbfaa58..c8179be 100644
+--- a/gcc/config/i386/linux64.h
++++ b/gcc/config/i386/linux64.h
+@@ -92,7 +92,7 @@ Boston, MA 02111-1307, USA.  */
+   } while (0)
+ 
+ /* Do code reading to identify a signal frame, and set the frame
+-   state data appropriately.  See unwind-dw2.c for the structs.  
++   state data appropriately.  See unwind-dw2.c for the structs.
+    Don't use this at all if inhibit_libc is used.  */
+ 
+ #ifndef inhibit_libc
+@@ -179,9 +179,9 @@ Boston, MA 02111-1307, USA.  */
+       {									\
+ 	struct rt_sigframe {						\
+ 	  int sig;							\
+-	  struct siginfo *pinfo;					\
++	  siginfo_t *pinfo;					\
+ 	  void *puc;							\
+-	  struct siginfo info;						\
++	  siginfo_t info;						\
+ 	  struct ucontext uc;						\
+ 	} *rt_ = (CONTEXT)->cfa;					\
+ 	sc_ = (struct sigcontext *) &rt_->uc.uc_mcontext;		\
+diff --git a/gcc/config/ia64/linux.h b/gcc/config/ia64/linux.h
+index fe5b558..b8506a6 100644
+--- a/gcc/config/ia64/linux.h
++++ b/gcc/config/ia64/linux.h
+@@ -72,7 +72,7 @@ do {						\
+       struct sigframe {							\
+ 	char scratch[16];						\
+ 	unsigned long sig_number;					\
+-	struct siginfo *info;						\
++	siginfo_t *info;						\
+ 	struct sigcontext *sc;						\
+       } *frame_ = (struct sigframe *)(CONTEXT)->psp;			\
+       struct sigcontext *sc_ = frame_->sc;				\
+@@ -130,7 +130,7 @@ do {						\
+       struct sigframe {							\
+ 	char scratch[16];						\
+ 	unsigned long sig_number;					\
+-	struct siginfo *info;						\
++	siginfo_t *info;						\
+ 	struct sigcontext *sc;						\
+       } *frame_ = (struct sigframe *)(CONTEXT)->psp;			\
+       struct sigcontext *sc_ = frame_->sc;				\
+diff --git a/gcc/config/rs6000/linux.h b/gcc/config/rs6000/linux.h
+index ba70ec1..69a684d 100644
+--- a/gcc/config/rs6000/linux.h
++++ b/gcc/config/rs6000/linux.h
+@@ -138,9 +138,9 @@ enum { SIGNAL_FRAMESIZE = 64 };
+ 	struct rt_sigframe {						\
+ 	  char gap[SIGNAL_FRAMESIZE];					\
+ 	  unsigned long _unused[2];					\
+-	  struct siginfo *pinfo;					\
++	  siginfo_t *pinfo;					\
+ 	  void *puc;							\
+-	  struct siginfo info;						\
++	  siginfo_t info;						\
+ 	  struct kernel_old_ucontext uc;				\
+ 	} *rt_ = (CONTEXT)->cfa;					\
+ 	sc_ = &rt_->uc.uc_mcontext;					\
