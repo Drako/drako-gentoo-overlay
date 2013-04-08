@@ -28,11 +28,8 @@ RESTRICT="test mirror"
 src_prepare() {
 	cd "${S}/src"
 
-	sed "s/@GIT_HASH@/v${MY_PV}/" <config.h.in >config.h.in.tmp
-	mv config.h.in.tmp config.h.in
-
-	sed 's/Hash:/Tag: /' <main.c >main.c.tmp
-	mv main.c.tmp main.c
+	sed -i -e "s/@GIT_HASH@/v${MY_PV}/" config.h.in || die "sed failed!"
+	sed -i -e 's/Hash:/Tag: /' main.c || die "sed failed!"
 }
 
 src_configure() {

@@ -4,7 +4,6 @@
 
 EAPI=5
 
-CMAKE_MIN_VERSION="2.6"
 inherit linux-mod
 
 DESCRIPTION="Read BOFH excuses from /proc/excuse"
@@ -31,7 +30,6 @@ src_prepare() {
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-gentoo.patch"
 	
-	sed "s/\$(shell uname -r)/${KV_FULL}/" <Makefile >Makefile.tmp
-	mv Makefile.tmp Makefile
+	sed -i -e "s/\$(shell uname -r)/${KV_FULL}/" Makefile || die "sed failed!"
 }
 
