@@ -33,5 +33,7 @@ src_prepare() {
 	kernel_is -ge 3 9 0 && epatch "${FILESDIR}/${P}-kernel-3.9.patch"
 	
 	sed -i -e "s/\$(shell uname -r)/${KV_FULL}/" Makefile || die "sed failed!"
+
+	set_kvobj "ko"
 }
 
