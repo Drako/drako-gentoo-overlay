@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit linux-mod linux-info
+inherit linux-info linux-mod
 
 DESCRIPTION="Read BOFH excuses from /proc/excuse"
 HOMEPAGE="https://github.com/Drako/bofh"
