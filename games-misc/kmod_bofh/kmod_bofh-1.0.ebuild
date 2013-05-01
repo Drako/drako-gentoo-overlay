@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit linux-mod
+inherit linux-mod linux-info
 
 DESCRIPTION="Read BOFH excuses from /proc/excuse"
 HOMEPAGE="https://github.com/Drako/bofh"
@@ -29,6 +29,8 @@ MODULE_NAMES="bofh(misc:${S}:${S})"
 src_prepare() {
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-gentoo.patch"
+
+	kernel_is -ge 3 9 0 && epatch "${FILESDIR}/${P}-kernel-3.9.patch"
 	
 	sed -i -e "s/\$(shell uname -r)/${KV_FULL}/" Makefile || die "sed failed!"
 }
