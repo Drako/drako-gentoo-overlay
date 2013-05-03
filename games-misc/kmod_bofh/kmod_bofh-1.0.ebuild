@@ -29,9 +29,7 @@ MODULE_NAMES="bofh(misc:${S}:${S})"
 src_prepare() {
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-gentoo.patch"
-
-	# hm... now it works without that patch :/
-	# kernel_is -ge 3 9 0 && epatch "${FILESDIR}/${P}-kernel-3.9.patch"
+	epatch "${FILESDIR}/${P}-uidgid.patch"
 	
 	sed -i -e "s/\$(shell uname -r)/${KV_FULL}/" Makefile || die "sed failed!"
 }
