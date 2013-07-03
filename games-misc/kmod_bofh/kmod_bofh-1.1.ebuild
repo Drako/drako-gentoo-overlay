@@ -28,6 +28,7 @@ MODULE_NAMES="bofh(misc:${S}:${S})"
 
 src_prepare() {
 	cd "${S}"
+	epatch "${FILESDIR}/${P}-hotfix.patch"
 	
 	sed -i -e "s/\$(shell uname -r)/${KV_FULL}/" Makefile || die "sed failed!"
 }
